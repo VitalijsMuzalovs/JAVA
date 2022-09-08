@@ -7,7 +7,7 @@
  * * * * *
  */
 
-public class jun3{
+public class drawPattern{
     public static void main(String[] args) {
         int rinda=6;
         for (int i=1; i<=rinda;i++){

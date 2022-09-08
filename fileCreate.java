@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class createFile {
+public class fileCreate {
     public static void main(String[] args) {
         try {
             File aka=new File("newFile.txt");

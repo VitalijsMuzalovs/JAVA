@@ -1,7 +1,7 @@
 // atrast rakstzīmju biežumu virknē
 import java.util.Scanner;
 
-public class jun2{
+public class charFreq{
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
         System.out.print("Enter text: ");

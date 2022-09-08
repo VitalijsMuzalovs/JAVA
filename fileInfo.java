@@ -1,7 +1,7 @@
 // ja nav faila,tad izveidot failu
 import java.io.File;
 
-public class myFile {
+public class fileInfo {
     public static void main(String[] args) {
 
         File aka = new  File("info.txt");

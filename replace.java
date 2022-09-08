@@ -1,6 +1,6 @@
 // atstarpju noņemšana no virknes
 
-public class jun4{
+public class replace{
     public static void main(String[] args) {
         String teikums="Kaste  ir   kas  te.";
         String org=teikums;
