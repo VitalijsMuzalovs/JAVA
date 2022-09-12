@@ -8,7 +8,7 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class App{
+public class Connect{
     private final String url = "jdbc:postgresql://abul.db.elephantsql.com:5432/aphfgqzl";
     private final String user = "aphfgqzl";
     private final String password = "E-XRiqulSIwntxQurDLibzk8EAeyalBZ";
@@ -37,7 +37,7 @@ public class App{
     }
 
     public static void main(String[] args) {
-        App app = new App();
+        Connect app = new Connect();
         app.connect();
 
     }
@@ -152,7 +152,7 @@ class text extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        App app = new App();
+        Connect app = new Connect();
         app.connect();
 //        lbTitle.setText(txtName.getText());
 //        txtName.setText("   ");
