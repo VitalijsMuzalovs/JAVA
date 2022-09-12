@@ -13,37 +13,32 @@ public class Connect{
     private final String user = "aphfgqzl";
     private final String password = "E-XRiqulSIwntxQurDLibzk8EAeyalBZ";
 
-    public Connection connect() {
+    public Connection connect(String sqlTxt) {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to the PostgreSQL server successfully.");
             Connection db = DriverManager.getConnection(url, user, password);
             Statement st = db.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM orders WHERE ordNr LIKE 'A15' ");
-            while (rs.next()) {
-                System.out.print("Column 1 returned ");
-                System.out.println(rs.getString(2));
-                System.out.print("Column 2 returned ");
-                System.out.println(rs.getString(3));
-            }
-            rs.close();
-            st.close();
+//            ResultSet rs = st.executeQuery("SELECT * FROM orders WHERE ordNr LIKE 'A15' ");
+            ResultSet rs = st.executeQuery(sqlTxt);
+//            while (rs.next()) {
+//                System.out.print("Column 1 returned ");
+//                System.out.println(rs.getString(2));
+//                System.out.print("Column 2 returned ");
+//                System.out.println(rs.getString(3));
+//            }
+//            rs.close();
+//            st.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
         return conn;
     }
-
-    public static void main(String[] args) {
-        Connect app = new Connect();
-        app.connect();
-
-    }
 }
 
-class text extends JFrame implements ActionListener{
+class AddAccount extends JFrame implements ActionListener{
     static JTextField txtName;
     static JTextField txtEmail;
     static JTextField txtPass;
@@ -74,7 +69,7 @@ class text extends JFrame implements ActionListener{
         p.add(comp, constr);
     }
 
-    text(){
+    AddAccount(){
     }
 
     public static void main (String[] args){
@@ -108,7 +103,7 @@ class text extends JFrame implements ActionListener{
 
         // button
         b=new JButton("Create account");
-        text te=new text();
+        AddAccount te=new AddAccount();
         b.addActionListener(te);
 
         // top panel
@@ -153,8 +148,21 @@ class text extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         Connect app = new Connect();
-        app.connect();
-//        lbTitle.setText(txtName.getText());
-//        txtName.setText("   ");
+        String myName = txtName.getText();
+        String myEmail = txtEmail.getText();
+        String myPass = txtPass.getText();
+        String myAddress = txtAddress.getText();
+        String myMobile = txtMobile.getText();
+//        String mySql = "INSERT INTO  orders (ordNr,Item_1,Item_2,Item_3,Item_4,Costs,Tips,Tax,SubTotal,Total) " +
+        String mySql = "INSERT INTO  orders (ordNr,Item_1,Item_2,Item_3,Item_4) " +
+                " VALUES ('"
+                +myName+"','"
+                +myEmail+"','"
+                +myPass+ "','"
+                +myAddress+"','"
+                +myMobile+"')";
+//        System.out.println(mySql);
+        app.connect(mySql);
+
     }
 }
