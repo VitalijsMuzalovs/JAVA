@@ -1,6 +1,47 @@
+package com.postgresqltutorial;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.*;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+
+public class App{
+    private final String url = "jdbc:postgresql://abul.db.elephantsql.com:5432/aphfgqzl";
+    private final String user = "aphfgqzl";
+    private final String password = "E-XRiqulSIwntxQurDLibzk8EAeyalBZ";
+
+    public Connection connect() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the PostgreSQL server successfully.");
+            Connection db = DriverManager.getConnection(url, user, password);
+            Statement st = db.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM orders WHERE ordNr LIKE 'A15' ");
+            while (rs.next()) {
+                System.out.print("Column 1 returned ");
+                System.out.println(rs.getString(2));
+                System.out.print("Column 2 returned ");
+                System.out.println(rs.getString(3));
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return conn;
+    }
+
+    public static void main(String[] args) {
+        App app = new App();
+        app.connect();
+
+    }
+}
 
 class text extends JFrame implements ActionListener{
     static JTextField txtName;
@@ -69,22 +110,20 @@ class text extends JFrame implements ActionListener{
         b=new JButton("Create account");
         text te=new text();
         b.addActionListener(te);
-        
+
         // top panel
         JPanel pTop=new JPanel();
         pTop.setPreferredSize(new Dimension(500, 100));
 
         // center panel
         JPanel p=new JPanel();
-        p.setLayout(new GridBagLayout()); 
-        // p.setLocation(50, 50);
-        // p.setSize(1, 1);
-        
+        p.setLayout(new GridBagLayout());
+
         //bottom panel (not used)
         JPanel pBottom=new JPanel();
         pTop.add(lbTitle);
         pTop.setLayout(new GridLayout(1,1));
-        
+
 
         f.add(pTop, "North");
         f.add(p, "Center");
@@ -104,7 +143,7 @@ class text extends JFrame implements ActionListener{
         addComponent(p, txtMobile, 2, 4, 1, 1,1,80,1,80);
         addComponent(p, b, 2, 5, 1, 1,30,1,1,200);
 
-        
+
         f.setSize(500,350);
         f.setResizable(false);
         f.add(p);
@@ -113,11 +152,9 @@ class text extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        String s=e.getActionCommand();
-        // if (s.equals("submit")){
-            lbTitle.setText(txtName.getText());
-            txtName.setText("   ");
-        // }
-        
+        App app = new App();
+        app.connect();
+//        lbTitle.setText(txtName.getText());
+//        txtName.setText("   ");
     }
 }

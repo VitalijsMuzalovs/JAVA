@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 
 
-public class myFile2 {
+public class fileRead2 {
     public static void main(String[] args) {
         String cels=System.getProperty("user.dir")+"\\newFile.txt";
         Charset enc=Charset.defaultCharset();

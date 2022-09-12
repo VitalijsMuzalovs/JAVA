@@ -12,6 +12,7 @@ class text extends JFrame implements ActionListener{
 
     public static void main (String[] args){
         f=new JFrame("Window title!");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         l=new JLabel("Empty text");
         b=new JButton("Press");
         text te=new text();

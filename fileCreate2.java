@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 
 
 
-public class myFile3 {
+public class fileCreate2 {
     public static void main(String[] args) {
         String cels=System.getProperty("user.dir")+"\\newFile.txt";
         Charset enc=Charset.defaultCharset();
