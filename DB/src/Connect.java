@@ -9,10 +9,9 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Connect{
-    private final String url = "jdbc:postgresql://abul.db.elephantsql.com:5432/aphfgqzl";
-    private final String user = "aphfgqzl";
-    private final String password = "E-XRiqulSIwntxQurDLibzk8EAeyalBZ";
-
+    private final String url = "jdbc:postgresql://abul.db.elephantsql.com:5432/efurcoqw";
+    private final String user = "efurcoqw";
+    private final String password = "vVR5GEhpnqPGx3prifBovck7CPtof1T-";
     public Connection connect(String sqlTxt) {
         Connection conn = null;
         try {
@@ -20,8 +19,8 @@ public class Connect{
             System.out.println("Connected to the PostgreSQL server successfully.");
             Connection db = DriverManager.getConnection(url, user, password);
             Statement st = db.createStatement();
-//            ResultSet rs = st.executeQuery("SELECT * FROM orders WHERE ordNr LIKE 'A15' ");
-            ResultSet rs = st.executeQuery(sqlTxt);
+            st.executeQuery(sqlTxt);
+//            ResultSet rs = st.executeQuery(sqlTxt);
 //            while (rs.next()) {
 //                System.out.print("Column 1 returned ");
 //                System.out.println(rs.getString(2));
@@ -32,6 +31,12 @@ public class Connect{
 //            st.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            if (e.getErrorCode()!=0)
+            {
+                JFrame errorFrame;
+                errorFrame = new JFrame("Show Message Box");
+                JOptionPane.showMessageDialog(errorFrame, e.getMessage(), "Error Message Box", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
         return conn;
@@ -94,7 +99,7 @@ class AddAccount extends JFrame implements ActionListener{
         txtName.setHorizontalAlignment(JTextField.LEFT);
         txtEmail=new JTextField(16);
         txtEmail.setHorizontalAlignment(JTextField.LEFT);
-        txtPass=new JTextField(16);
+        txtPass=new JPasswordField(16);
         txtPass.setHorizontalAlignment(JTextField.LEFT);
         txtAddress=new JTextField(16);
         txtAddress.setHorizontalAlignment(JTextField.LEFT);
@@ -143,7 +148,6 @@ class AddAccount extends JFrame implements ActionListener{
         f.setResizable(false);
         f.add(p);
         f.setVisible(true);
-        // f.show();
     }
 
     public void actionPerformed(ActionEvent e){
@@ -153,8 +157,7 @@ class AddAccount extends JFrame implements ActionListener{
         String myPass = txtPass.getText();
         String myAddress = txtAddress.getText();
         String myMobile = txtMobile.getText();
-//        String mySql = "INSERT INTO  orders (ordNr,Item_1,Item_2,Item_3,Item_4,Costs,Tips,Tax,SubTotal,Total) " +
-        String mySql = "INSERT INTO  orders (ordNr,Item_1,Item_2,Item_3,Item_4) " +
+        String mySql = "INSERT INTO  Users (name,email,password,address,mobile) " +
                 " VALUES ('"
                 +myName+"','"
                 +myEmail+"','"
@@ -163,6 +166,16 @@ class AddAccount extends JFrame implements ActionListener{
                 +myMobile+"')";
 //        System.out.println(mySql);
         app.connect(mySql);
+
+        txtName.setText("");
+        txtEmail.setText("");
+        txtPass.setText("");
+        txtAddress.setText("");
+        txtMobile.setText("");
+
+        JFrame msgFrame;
+        msgFrame = new JFrame("Show Message Box");
+        JOptionPane.showMessageDialog(msgFrame,"Record is successfully saved!","Message Box",JOptionPane.INFORMATION_MESSAGE);
 
     }
 }
