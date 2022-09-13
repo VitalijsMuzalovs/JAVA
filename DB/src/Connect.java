@@ -12,14 +12,16 @@ public class Connect{
     private final String url = "jdbc:postgresql://abul.db.elephantsql.com:5432/efurcoqw";
     private final String user = "efurcoqw";
     private final String password = "vVR5GEhpnqPGx3prifBovck7CPtof1T-";
-    public Connection connect(String sqlTxt) {
+    public Connection connect(String sqlTxt){
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to the PostgreSQL server successfully.");
             Connection db = DriverManager.getConnection(url, user, password);
             Statement st = db.createStatement();
-            st.executeQuery(sqlTxt);
+            st.executeUpdate(sqlTxt);
+//            ####### You should use executeUpdate for queries that do not return result sets. That would include insert, update and delete.
+//            st.executeQuery(sqlTxt);
 //            ResultSet rs = st.executeQuery(sqlTxt);
 //            while (rs.next()) {
 //                System.out.print("Column 1 returned ");
@@ -29,19 +31,20 @@ public class Connect{
 //            }
 //            rs.close();
 //            st.close();
+            JFrame msgFrame;
+            msgFrame = new JFrame("Show Message Box");
+            JOptionPane.showMessageDialog(msgFrame,"Record is successfully saved!","Message Box",JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            if (e.getErrorCode()!=0)
-            {
+//            System.out.println(e.getMessage());
+//            System.out.println(e.getErrorCode());
                 JFrame errorFrame;
                 errorFrame = new JFrame("Show Message Box");
                 JOptionPane.showMessageDialog(errorFrame, e.getMessage(), "Error Message Box", JOptionPane.ERROR_MESSAGE);
-            }
         }
-
         return conn;
     }
 }
+
 
 class AddAccount extends JFrame implements ActionListener{
     static JTextField txtName;
@@ -172,10 +175,6 @@ class AddAccount extends JFrame implements ActionListener{
         txtPass.setText("");
         txtAddress.setText("");
         txtMobile.setText("");
-
-        JFrame msgFrame;
-        msgFrame = new JFrame("Show Message Box");
-        JOptionPane.showMessageDialog(msgFrame,"Record is successfully saved!","Message Box",JOptionPane.INFORMATION_MESSAGE);
 
     }
 }
