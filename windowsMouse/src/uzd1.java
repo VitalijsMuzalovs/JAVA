@@ -1,16 +1,17 @@
 import java.awt.event.*;
 import java.awt.*;
 
-public class Main implements MouseMotionListener, MouseListener{
+public class uzd1 implements MouseMotionListener, MouseListener{
     private Frame f;
     private TextField tf;
 
-    public Main(){
+    public uzd1(){
         f = new Frame("Title");
         tf = new TextField(30);
+
     }
 
-public void launchFrame(){
+    public void launchFrame(){
     Label lb = new Label("Klikšķini un kustini peli");
     f.add(lb,BorderLayout.NORTH);
     f.add(tf,BorderLayout.SOUTH);
@@ -18,6 +19,7 @@ public void launchFrame(){
     f.addMouseListener(this);
     f.setSize(500,300);
     f.setVisible(true);
+
 }
 
 public void mouseDragged(MouseEvent e){
@@ -29,9 +31,11 @@ public void mouseDragged(MouseEvent e){
     public void mousePressed(MouseEvent e){}
     public void mouseClicked(MouseEvent e){}
     public void mouseReleased(MouseEvent e){}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
 
     public static void main(String[] args) {
-        Main two = new Main();
+        uzd1 two = new uzd1();
         two.launchFrame();
     }
 }
