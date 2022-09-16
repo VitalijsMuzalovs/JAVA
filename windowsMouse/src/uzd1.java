@@ -8,8 +8,8 @@ public class uzd1 implements MouseMotionListener, MouseListener{
     public uzd1(){
         f = new Frame("Title");
         tf = new TextField(30);
-
     }
+
 
     public void launchFrame(){
     Label lb = new Label("Klikšķini un kustini peli");
@@ -20,9 +20,18 @@ public class uzd1 implements MouseMotionListener, MouseListener{
     f.setSize(500,300);
     f.setVisible(true);
 
+    // close window
+    f.addWindowListener(new WindowAdapter(){
+        public void windowClosing(WindowEvent we){
+            System.exit(0);
+        }
+    });
 }
+    public void windowClosing (WindowEvent e) {
+        f.dispose();
+    }
 
-public void mouseDragged(MouseEvent e){
+    public void mouseDragged(MouseEvent e){
         String xy = "Peles vilkšana: X=" + e.getX() + " Y=" + e.getY();
         tf.setText(xy);
 }
