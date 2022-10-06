@@ -1,5 +1,6 @@
 class plate{
     String model;
+
     public plate(String model){
         this.model = model;
     }
