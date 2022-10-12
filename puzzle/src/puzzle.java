@@ -3,36 +3,239 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class puzzle extends JFrame implements ActionListener {
-    Button b1,b2,b3,b4,b5,b6,b7,b8,b9;
+    Button b1, b2, b3, b4, b5, b6, b7, b8, b9;
 
-    puzzle(){
-        b1=new Button("1");
-        b1.setBounds(50,100,40,40);
-        b2=new Button("2");
-        b2.setBounds(100,100,40,40);
-        b3=new Button("3");
-        b3.setBounds(150,100,40,40);
-        b4=new Button("4");
-        b4.setBounds(50,150,40,40);
-        b5=new Button("5");
-        b5.setBounds(100,150,40,40);
-        b6=new Button("6");
-        b6.setBounds(150,150,40,40);
-        b7=new Button("7");
-        b7.setBounds(50,200,40,40);
-        b8=new Button("8");
-        b8.setBounds(100,200,40,40);
-        b9=new Button("");
-        b9.setBounds(150,200,40,40);
+    puzzle() {
+        b1 = new Button("1");
+        b1.setBounds(50, 100, 40, 40);
+        b2 = new Button("2");
+        b2.setBounds(100, 100, 40, 40);
+        b3 = new Button("3");
+        b3.setBounds(150, 100, 40, 40);
+        b4 = new Button("4");
+        b4.setBounds(50, 150, 40, 40);
+        b5 = new Button("5");
+        b5.setBounds(100, 150, 40, 40);
+        b6 = new Button("6");
+        b6.setBounds(150, 150, 40, 40);
+        b7 = new Button("7");
+        b7.setBounds(50, 200, 40, 40);
+        b8 = new Button("8");
+        b8.setBounds(100, 200, 40, 40);
+        b9 = new Button(" ");
+        b9.setBounds(150, 200, 40, 40);
 
-        add(b1);add(b2);add(b3);add(b4);add(b5);add(b6);add(b7);add(b8);add(b9);
+        add(b1);
+        add(b2);
+        add(b3);
+        add(b4);
+        add(b5);
+        add(b6);
+        add(b7);
+        add(b8);
+        add(b9);
 
-        setSize(400,400);
+        Image icon = Toolkit.getDefaultToolkit().getImage("E:\\TEHNIKUMS\\JAVA\\puzzle\\src\\a.png");
+        setIconImage(icon);
+
+
+        ImageIcon img=new ImageIcon("E:\\TEHNIKUMS\\JAVA\\puzzle\\src\\a.png");
+        add(new JLabel(img));
+
+        JProgressBar progress = new JProgressBar(0,0,1000);
+        progress.setBounds(20,300,150,20);
+        progress.setValue(0);
+        progress.setStringPainted(true);
+        add(progress);
+
+        JMenuBar mb = new JMenuBar();
+        JMenu menu = new JMenu("Menu");
+        JMenuItem item1=new JMenuItem("Close");
+        menu.add(item1);
+        mb.add(menu);
+        setJMenuBar(mb);
+
+
+        setTitle("Game");
+        setSize(400, 400);
         setLayout(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
-    }
-}
+        loop();
 
-public static void main(String[] args) {
-    new puzzle();
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
+        b5.addActionListener(this);
+        b6.addActionListener(this);
+        b7.addActionListener(this);
+        b8.addActionListener(this);
+        b9.addActionListener(this);
+        item1.addActionListener(this);
+    }
+
+
+    public static void main(String[] args) {
+        puzzle obj=new puzzle();
+    }
+
+    public void loop(){
+        int i =0;
+        while(i<=1000){
+            progress.setValue(i);
+            i=i+10;
+            try{
+                Thread.sleep(120);
+            }
+            catch(Exception e){}
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if ("Close".equals(e.getActionCommand())) {
+            System.exit(NORMAL);
+        }
+
+        if(e.getSource()==b1){
+            String label=b1.getLabel();
+            if(b2.getLabel().equals(" ")){
+                b2.setLabel(label);
+                b1.setLabel(" ");
+            }
+            if(b4.getLabel().equals(" ")){
+                b4.setLabel(label);
+                b1.setLabel(" ");
+            }
+        }
+        if(e.getSource()==b2){
+            String label=b2.getLabel();
+            if(b1.getLabel().equals(" ")){
+                b1.setLabel(label);
+                b2.setLabel(" ");
+            }
+            if(b3.getLabel().equals(" ")){
+                b3.setLabel(label);
+                b2.setLabel(" ");
+            }
+            if(b5.getLabel().equals(" ")){
+                b5.setLabel(label);
+                b2.setLabel(" ");
+            }
+        }
+        if(e.getSource()==b3){
+            String label=b3.getLabel();
+            if(b2.getLabel().equals(" ")){
+                b2.setLabel(label);
+                b3.setLabel(" ");
+            }
+            if(b6.getLabel().equals(" ")){
+                b6.setLabel(label);
+                b3.setLabel(" ");
+            }
+        }
+        if(e.getSource()==b4){
+            String label=b4.getLabel();
+            if(b1.getLabel().equals(" ")){
+                b1.setLabel(label);
+                b4.setLabel(" ");
+            }
+            if(b5.getLabel().equals(" ")){
+                b5.setLabel(label);
+                b4.setLabel(" ");
+            }
+            if(b7.getLabel().equals(" ")){
+                b7.setLabel(label);
+                b4.setLabel(" ");
+            }
+        }
+        if(e.getSource()==b5){
+            String label=b5.getLabel();
+            if(b2.getLabel().equals(" ")){
+                b2.setLabel(label);
+                b5.setLabel(" ");
+            }
+            if(b4.getLabel().equals(" ")){
+                b4.setLabel(label);
+                b5.setLabel(" ");
+            }
+            if(b6.getLabel().equals(" ")){
+                b6.setLabel(label);
+                b5.setLabel(" ");
+            }
+            if(b8.getLabel().equals(" ")){
+                b8.setLabel(label);
+                b5.setLabel(" ");
+            }
+        }
+        if(e.getSource()==b6){
+            String label=b6.getLabel();
+            if(b3.getLabel().equals(" ")){
+                b3.setLabel(label);
+                b6.setLabel(" ");
+            }
+            if(b5.getLabel().equals(" ")){
+                b5.setLabel(label);
+                b6.setLabel(" ");
+            }
+            if(b9.getLabel().equals(" ")){
+                b9.setLabel(label);
+                b6.setLabel(" ");
+            }
+        }
+        if(e.getSource()==b7){
+            String label=b7.getLabel();
+            if(b4.getLabel().equals(" ")){
+                b4.setLabel(label);
+                b7.setLabel(" ");
+            }
+            if(b8.getLabel().equals(" ")){
+                b8.setLabel(label);
+                b7.setLabel(" ");
+            }
+        }
+        if(e.getSource()==b8){
+            String label=b8.getLabel();
+            if(b7.getLabel().equals(" ")){
+                b7.setLabel(label);
+                b8.setLabel(" ");
+            }
+            if(b5.getLabel().equals(" ")){
+                b5.setLabel(label);
+                b8.setLabel(" ");
+            }
+            if(b9.getLabel().equals(" ")){
+                b9.setLabel(label);
+                b8.setLabel(" ");
+            }
+        }
+        if(e.getSource()==b9){
+            String label=b9.getLabel();
+            if(b6.getLabel().equals(" ")){
+                b6.setLabel(label);
+                b9.setLabel(" ");
+            }
+            if(b8.getLabel().equals(" ")){
+                b8.setLabel(label);
+                b9.setLabel(" ");
+            }
+        }
+
+
+
+        if(b1.getLabel().equals("1")
+                && b2.getLabel().equals("2")
+                && b3.getLabel().equals("3")
+                && b4.getLabel().equals("4")
+                && b5.getLabel().equals("5")
+                && b6.getLabel().equals("6")
+                && b7.getLabel().equals("7")
+                && b8.getLabel().equals("8")
+                && b9.getLabel().equals(" ")){
+            JOptionPane.showMessageDialog(this,"WIN!");
+        }
+
+    }
+
 }
